@@ -3,7 +3,10 @@ package me.dna.rpgodyssey.creativetabs;
 import me.dna.rpgodyssey.RPG_Odyssey;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.CompassItem;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -19,9 +22,13 @@ public class ModCreativeModeTabs {
     public static final DeferredRegister<CreativeModeTab> TABS =
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, RPG_Odyssey.MOD_ID);
 
-    public static final RegistryObject<CreativeModeTab> MOD_BLOCKS = TABS.register("modblocks",
+    public static final RegistryObject<CreativeModeTab> MODBLOCKS = TABS.register("modblocks",
             () -> CreativeModeTab.builder()
-                    .title(Component.translatable("RPG-Odyssey Blocks"))
+                    .title(Component.translatable("itemGroup.modblocks"))
+                    .icon(() -> new ItemStack(Items.COMPASS))
+                    .displayItems((itemDisplayParameters, output) -> {
+                        output.accept(Items.COMPASS);
+                    })
                     .build()
 
     );
